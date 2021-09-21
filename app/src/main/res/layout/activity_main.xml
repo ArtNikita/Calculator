@@ -5,16 +5,47 @@
     android:background="@color/black"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/calculations_text_view"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="22dp"
         android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:gravity="bottom|end"
-        android:padding="22dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/calculations_text_view_text_size" />
+        android:paddingBottom="22dp">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/calculation_history_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="bottom|end"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/calculation_history_text_view_text_size" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/calculations_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="bottom|end"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/calculations_text_view_text_size" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View
         android:layout_width="match_parent"
