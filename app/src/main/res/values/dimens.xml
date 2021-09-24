@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="buttons_text_size">25sp</dimen>
+    <dimen name="buttons_text_size_large">40sp</dimen>
+    <dimen name="calculations_text_view_text_size">40sp</dimen>
+    <dimen name="calculation_history_text_view_text_size">30sp</dimen>
+</resources>

@@ -1,18 +1,437 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/black"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="22dp"
+        android:layout_weight="1"
+        android:paddingBottom="22dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/calculation_history_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="bottom|end"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/calculation_history_text_view_text_size" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/calculations_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="bottom|end"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/calculations_text_view_text_size" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="22dp"
+        android:background="@color/interface_yellow" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:animateLayoutChanges="true"
+        android:background="@android:color/transparent"
+        android:columnCount="5"
+        android:padding="22dp"
+        android:rowCount="7">
+
+        <!--_______________1_row_______________-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/change_trigonometry_mode_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/deg_rad_switch_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sin_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cos_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tan_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <!--_______________2_row_______________-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/power_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/lg_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ln_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/open_parenthesis_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/close_parenthesis_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <!--_______________3_row_______________-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sqrt_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/clear_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:text="@string/clear_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/backspace_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/backspace_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/percent_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/percent_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/division_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/division_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <!--_______________4_row_______________-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/factorial_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_seven_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_seven_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_eight_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_eight_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_nine_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_nine_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/multiplication_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/multiplication_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size_large" />
+
+        <!--_______________5_row_______________-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/reverse_number_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_four_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_four_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_five_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_five_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_six_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_six_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/minus_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/minus_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size_large" />
+
+        <!--_______________6_row_______________-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/pi_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_one_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_one_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_two_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_two_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_three_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_three_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/plus_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/plus_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size_large" />
+
+        <!--_______________7_row_______________-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/change_layout_back_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/change_layout_and_e_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/change_layout_and_e_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size_large" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/digit_zero_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/digit_zero_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dot_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/dot_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/buttons_text_size" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/equals_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="?selectableItemBackgroundBorderless"
+            android:text="@string/equals_button"
+            android:textColor="@color/interface_yellow"
+            android:textSize="@dimen/buttons_text_size_large" />
+    </GridLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

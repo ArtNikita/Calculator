@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="clear_button">AC</string>
+    <string name="percent_button">%</string>
+    <string name="division_button">/</string>
+    <string name="multiplication_button">\u00d7</string>
+    <string name="minus_button">-</string>
+    <string name="plus_button">+</string>
+    <string name="backspace_button">⌫</string>
+    <string name="equals_button">=</string>
+    <string name="change_layout_and_e_button">⇆</string>
+    <string name="dot_button">.</string>
+    <string name="digit_zero_button">0</string>
+    <string name="digit_one_button">1</string>
+    <string name="digit_two_button">2</string>
+    <string name="digit_three_button">3</string>
+    <string name="digit_four_button">4</string>
+    <string name="digit_five_button">5</string>
+    <string name="digit_six_button">6</string>
+    <string name="digit_seven_button">7</string>
+    <string name="digit_eight_button">8</string>
+    <string name="digit_nine_button">9</string>
 </resources>
