@@ -1,6 +1,7 @@
 package ru.nikky.calculator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -18,6 +19,7 @@ public class EvaluateExpression {
     private static final char DIVISION = '/';
     private static final char OPEN_PARENTHESIS = '(';
     private static final char CLOSE_PARENTHESIS = ')';
+    private static final int DIVISION_SCALE = 5;
 
     public EvaluateExpression(String currentExpression) {
         this.currentExpression = currentExpression;
@@ -94,7 +96,7 @@ public class EvaluateExpression {
             case MULTIPLICATION:
                 return firstNumber.multiply(secondNumber);
             case DIVISION:
-                return firstNumber.divide(secondNumber);
+                return firstNumber.divide(secondNumber, DIVISION_SCALE, RoundingMode.CEILING);
             default:
                 return BigDecimal.valueOf(0);
         }

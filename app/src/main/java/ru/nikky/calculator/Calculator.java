@@ -383,7 +383,12 @@ public class Calculator {
 
     private void equalsButtonPressed() {
         vibrate();
-        BigDecimal result = evaluateExpression();
+        BigDecimal result = null;
+        try {
+            result = evaluateExpression();
+        } catch (Exception e){
+
+        }
         String stringResult = String.valueOf(result);
         if (stringResult.length() > 2 &&
                 stringResult.charAt(stringResult.length() - 1) == ZERO &&
