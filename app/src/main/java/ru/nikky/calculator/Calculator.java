@@ -2,6 +2,10 @@ package ru.nikky.calculator;
 
 import android.content.Context;
 import android.os.Vibrator;
+import android.view.View;
+import android.widget.FrameLayout;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.math.BigDecimal;
 
@@ -13,47 +17,63 @@ public class Calculator {
 
     private final AppCompatActivity mainActivity;
     //first row buttons
-    private AppCompatButton changeTrigonometryModeButton;
-    private AppCompatButton degRadSwitchButton;
-    private AppCompatButton sinButton;
-    private AppCompatButton cosButton;
-    private AppCompatButton tanButton;
+    private MaterialButton changeTrigonometryModeButton;
+    private MaterialButton degRadSwitchButton;
+    private MaterialButton sinButton;
+    private MaterialButton cosButton;
+    private MaterialButton tanButton;
     //second row buttons
-    private AppCompatButton powerButton;
-    private AppCompatButton lgButton;
-    private AppCompatButton lnButton;
-    private AppCompatButton openParenthesisButton;
-    private AppCompatButton closeParenthesisButton;
+    private MaterialButton powerButton;
+    private MaterialButton lgButton;
+    private MaterialButton lnButton;
+    private MaterialButton openParenthesisButton;
+    private MaterialButton closeParenthesisButton;
     //third row buttons
-    private AppCompatButton sqrtButton;
-    private AppCompatButton clearButton;
-    private AppCompatButton backspaceButton;
-    private AppCompatButton percentButton;
-    private AppCompatButton divisionButton;
+    private MaterialButton sqrtButton;
+    private MaterialButton clearButton;
+    private MaterialButton backspaceButton;
+    private MaterialButton percentButton;
+    private MaterialButton divisionButton;
     //fourth row buttons
-    private AppCompatButton factorialButton;
-    private AppCompatButton digitSevenButton;
-    private AppCompatButton digitEightButton;
-    private AppCompatButton digitNineButton;
-    private AppCompatButton multiplicationButton;
+    private MaterialButton factorialButton;
+    private MaterialButton digitSevenButton;
+    private MaterialButton digitEightButton;
+    private MaterialButton digitNineButton;
+    private MaterialButton multiplicationButton;
     //fifth row buttons
-    private AppCompatButton reverseNumberButton;
-    private AppCompatButton digitFourButton;
-    private AppCompatButton digitFiveButton;
-    private AppCompatButton digitSixButton;
-    private AppCompatButton minusButton;
+    private MaterialButton reverseNumberButton;
+    private MaterialButton digitFourButton;
+    private MaterialButton digitFiveButton;
+    private MaterialButton digitSixButton;
+    private MaterialButton minusButton;
     //sixth row buttons
-    private AppCompatButton piButton;
-    private AppCompatButton digitOneButton;
-    private AppCompatButton digitTwoButton;
-    private AppCompatButton digitThreeButton;
-    private AppCompatButton plusButton;
+    private MaterialButton piButton;
+    private MaterialButton digitOneButton;
+    private MaterialButton digitTwoButton;
+    private MaterialButton digitThreeButton;
+    private MaterialButton plusButton;
     //seventh row buttons
-    private AppCompatButton changeLayoutBackButton;
-    private AppCompatButton changeLayoutAndEButton;
-    private AppCompatButton digitZeroButton;
-    private AppCompatButton dotButton;
-    private AppCompatButton equalsButton;
+    private MaterialButton eButton;
+    private MaterialButton changeLayoutButton;
+    private MaterialButton digitZeroButton;
+    private MaterialButton dotButton;
+    private MaterialButton equalsButton;
+
+    private FrameLayout changeTrigonometryModeButtonFrameLayout;
+    private FrameLayout degRadSwitchButtonFrameLayout;
+    private FrameLayout sinButtonFrameLayout;
+    private FrameLayout cosButtonFrameLayout;
+    private FrameLayout tanButtonFrameLayout;
+    private FrameLayout powerButtonFrameLayout;
+    private FrameLayout lgButtonFrameLayout;
+    private FrameLayout lnButtonFrameLayout;
+    private FrameLayout openParenthesisButtonFrameLayout;
+    private FrameLayout closeParenthesisButtonFrameLayout;
+    private FrameLayout sqrtButtonFrameLayout;
+    private FrameLayout factorialButtonFrameLayout;
+    private FrameLayout reverseNumberButtonFrameLayout;
+    private FrameLayout piButtonFrameLayout;
+    private FrameLayout eButtonFrameLayout;
 
     private AppCompatTextView calculationsTextView;
     private AppCompatTextView calculationsHistoryTextView;
@@ -63,6 +83,9 @@ public class Calculator {
     private boolean numTypingMode;
     private boolean dotEnteredMode;
     private int notClosedOpenParenthesisCount;
+    private boolean allButtonsMode;
+
+    private FrameLayout[] additionalButtonsFrameLayouts;
 
     private static final char DOT = '.';
     private static final char OPEN_PARENTHESIS = '(';
@@ -82,7 +105,9 @@ public class Calculator {
         setOnClickListeners();
         initCurrentExpression();
         updateCalculationsTextView();
+        initAdditionalButtonsFrameLayouts();
         initModesAndParams();
+        initButtonsMode();
     }
 
     private void initViews() {
@@ -123,14 +148,49 @@ public class Calculator {
         digitThreeButton = mainActivity.findViewById(R.id.digit_three_button);
         plusButton = mainActivity.findViewById(R.id.plus_button);
         //seventh row buttons
-        changeLayoutBackButton = mainActivity.findViewById(R.id.change_layout_back_button);
-        changeLayoutAndEButton = mainActivity.findViewById(R.id.change_layout_and_e_button);
+        eButton = mainActivity.findViewById(R.id.e_button);
+        changeLayoutButton = mainActivity.findViewById(R.id.change_layout_button);
         digitZeroButton = mainActivity.findViewById(R.id.digit_zero_button);
         dotButton = mainActivity.findViewById(R.id.dot_button);
         equalsButton = mainActivity.findViewById(R.id.equals_button);
 
+        changeTrigonometryModeButtonFrameLayout = mainActivity.findViewById(R.id.change_trigonometry_mode_button_frame_layout);
+        degRadSwitchButtonFrameLayout = mainActivity.findViewById(R.id.deg_rad_switch_button_frame_layout);
+        sinButtonFrameLayout = mainActivity.findViewById(R.id.sin_button_frame_layout);
+        cosButtonFrameLayout = mainActivity.findViewById(R.id.cos_button_frame_layout);
+        tanButtonFrameLayout = mainActivity.findViewById(R.id.tan_button_frame_layout);
+        powerButtonFrameLayout = mainActivity.findViewById(R.id.power_button_frame_layout);
+        lgButtonFrameLayout = mainActivity.findViewById(R.id.lg_button_frame_layout);
+        lnButtonFrameLayout = mainActivity.findViewById(R.id.ln_button_frame_layout);
+        openParenthesisButtonFrameLayout = mainActivity.findViewById(R.id.open_parenthesis_button_frame_layout);
+        closeParenthesisButtonFrameLayout = mainActivity.findViewById(R.id.close_parenthesis_button_frame_layout);
+        sqrtButtonFrameLayout = mainActivity.findViewById(R.id.sqrt_button_frame_layout);
+        factorialButtonFrameLayout = mainActivity.findViewById(R.id.factorial_button_frame_layout);
+        reverseNumberButtonFrameLayout = mainActivity.findViewById(R.id.reverse_number_button_frame_layout);
+        piButtonFrameLayout = mainActivity.findViewById(R.id.pi_button_frame_layout);
+        eButtonFrameLayout = mainActivity.findViewById(R.id.e_button_frame_layout);
+
         calculationsTextView = mainActivity.findViewById(R.id.calculations_text_view);
         calculationsHistoryTextView = mainActivity.findViewById(R.id.calculation_history_text_view);
+    }
+
+    private void initAdditionalButtonsFrameLayouts() {
+        additionalButtonsFrameLayouts = new FrameLayout[]{
+                changeTrigonometryModeButtonFrameLayout,
+                degRadSwitchButtonFrameLayout,
+                sinButtonFrameLayout,
+                cosButtonFrameLayout,
+                tanButtonFrameLayout,
+                powerButtonFrameLayout,
+                lgButtonFrameLayout,
+                lnButtonFrameLayout,
+                openParenthesisButtonFrameLayout,
+                closeParenthesisButtonFrameLayout,
+                sqrtButtonFrameLayout,
+                factorialButtonFrameLayout,
+                reverseNumberButtonFrameLayout,
+                piButtonFrameLayout,
+                eButtonFrameLayout};
     }
 
     private void setOnClickListeners() {
@@ -140,6 +200,32 @@ public class Calculator {
         setClearButtonOnClickListener();
         setBackspaceButtonOnClickListener();
         setEqualsButtonOnClickListener();
+        setChangeLayoutAndEButtonOnClickListener();
+    }
+
+    private void setChangeLayoutAndEButtonOnClickListener() {
+        changeLayoutButton.setOnClickListener(v -> {
+            vibrate();
+            if (allButtonsMode) {
+                allButtonsMode = false;
+                hideAdditionalButtonsFrameLayouts();
+            } else {
+                allButtonsMode = true;
+                showAdditionalButtonsFrameLayouts();
+            }
+        });
+    }
+
+    private void showAdditionalButtonsFrameLayouts() {
+        for (FrameLayout frameLayout : additionalButtonsFrameLayouts) {
+            frameLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideAdditionalButtonsFrameLayouts() {
+        for (FrameLayout frameLayout : additionalButtonsFrameLayouts) {
+            frameLayout.setVisibility(View.GONE);
+        }
     }
 
     private void setDigitButtonsOnClickListeners() {
@@ -167,7 +253,7 @@ public class Calculator {
             vibrate();
             if (dotEnteredMode) return;
             if (!numTypingMode) {
-                currentExpression += "0";
+                currentExpression += ZERO;
             }
             currentExpression += DOT;
             dotEnteredMode = true;
@@ -245,6 +331,11 @@ public class Calculator {
         numTypingMode = isNumTypingMode();
         dotEnteredMode = isDotEnteredMode();
         notClosedOpenParenthesisCount = countNotClosedOpenParenthesis();
+    }
+
+    private void initButtonsMode() {
+        allButtonsMode = false;
+        hideAdditionalButtonsFrameLayouts();
     }
 
     private boolean isNumTypingMode() {
