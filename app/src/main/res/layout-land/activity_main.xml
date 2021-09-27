@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/default_margin_or_padding"
+        android:layout_marginTop="@dimen/default_margin_or_padding"
+        android:layout_marginEnd="@dimen/default_margin_or_padding"
+        android:layout_marginBottom="@dimen/default_margin_or_padding"
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/default_margin_or_padding">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/calculation_history_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:gravity="bottom|end"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/calculation_history_text_view_text_size" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/calculations_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="bottom|end"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/calculations_text_view_text_size" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="@dimen/separate_view_height"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/default_margin_or_padding"
+        android:layout_marginBottom="@dimen/default_margin_or_padding"
+        android:background="@color/interface_yellow" />
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:animateLayoutChanges="true"
+        android:background="@android:color/transparent"
+        android:columnCount="5"
+        android:paddingTop="@dimen/default_margin_or_padding"
+        android:paddingBottom="@dimen/default_margin_or_padding"
+        android:rowCount="7">
+
+        <!--_______________1_row_______________-->
+
+        <FrameLayout
+            android:id="@+id/change_trigonometry_mode_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/change_trigonometry_mode_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/change_trigonometry_mode_button" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/deg_rad_switch_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deg_rad_switch_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/deg_rad_switch_button" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/sin_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sin_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/sin_button" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/cos_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cos_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/cos_button" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/tan_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tan_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/tan_button" />
+        </FrameLayout>
+
+        <!--_______________2_row_______________-->
+
+        <FrameLayout
+            android:id="@+id/power_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/power_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/power_button" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/lg_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/lg_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/lg_button" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ln_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ln_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/ln_button" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/open_parenthesis_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/open_parenthesis_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/open_parenthesis_button" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/close_parenthesis_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/close_parenthesis_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/close_parenthesis_button" />
+        </FrameLayout>
+
+        <!--_______________3_row_______________-->
+
+        <FrameLayout
+            android:id="@+id/sqrt_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sqrt_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/sqrt_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/clear_button"
+                style="@style/CalculatorButtonStyle.MainOperations"
+                android:text="@string/clear_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/backspace_button"
+                style="@style/CalculatorButtonStyle.MainOperations"
+                android:text="@string/backspace_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/percent_button"
+                style="@style/CalculatorButtonStyle.MainOperations"
+                android:text="@string/percent_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/division_button"
+                style="@style/CalculatorButtonStyle.MainOperations"
+                android:text="@string/division_button" />
+        </FrameLayout>
+
+        <!--_______________4_row_______________-->
+
+        <FrameLayout
+            android:id="@+id/factorial_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/factorial_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/factorial_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_seven_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_seven_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_eight_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_eight_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_nine_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_nine_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/multiplication_button"
+                style="@style/CalculatorButtonStyle.MainOperations.LargeText"
+                android:text="@string/multiplication_button" />
+        </FrameLayout>
+
+        <!--_______________5_row_______________-->
+
+        <FrameLayout
+            android:id="@+id/reverse_number_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reverse_number_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/reverse_number_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_four_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_four_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_five_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_five_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_six_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_six_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/minus_button"
+                style="@style/CalculatorButtonStyle.MainOperations.LargeText"
+                android:text="@string/minus_button" />
+        </FrameLayout>
+
+        <!--_______________6_row_______________-->
+
+        <FrameLayout
+            android:id="@+id/pi_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pi_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/pi_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_one_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_one_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_two_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_two_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_three_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_three_button" />
+        </FrameLayout>
+
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/plus_button"
+                style="@style/CalculatorButtonStyle.MainOperations.LargeText"
+                android:text="@string/plus_button" />
+        </FrameLayout>
+
+        <!--_______________7_row_______________-->
+
+        <FrameLayout
+            android:id="@+id/e_button_frame_layout"
+            style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/e_button"
+                style="@style/CalculatorButtonStyle.AdditionalOperations"
+                android:text="@string/e_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/change_layout_button"
+                style="@style/CalculatorButtonStyle.MainOperations.LargeText"
+                android:text="@string/change_layout_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/digit_zero_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/digit_zero_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dot_button"
+                style="@style/CalculatorButtonStyle.Numbers"
+                android:text="@string/dot_button" />
+        </FrameLayout>
+
+        <FrameLayout style="@style/ButtonFrameLayoutStyle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/equals_button"
+                style="@style/CalculatorButtonStyle.MainOperations.LargeText"
+                android:text="@string/equals_button" />
+        </FrameLayout>
+    </GridLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
