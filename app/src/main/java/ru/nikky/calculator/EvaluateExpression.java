@@ -47,8 +47,9 @@ public class EvaluateExpression {
                 currentIndex += currentToken.length();
                 continue;
             } else {
-                if (operationsStack.empty() ||
-                        operationsStack.peek().equals(String.valueOf(OPEN_PARENTHESIS))) {
+                if ( !currentToken.equals(String.valueOf(CLOSE_PARENTHESIS)) &&
+                        (operationsStack.empty() ||
+                        operationsStack.peek().equals(String.valueOf(OPEN_PARENTHESIS)))) {
                     operationsStack.add(currentToken);
                     currentIndex += currentToken.length();
                     continue;

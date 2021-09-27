@@ -215,6 +215,40 @@ public class Calculator {
         setBackspaceButtonOnClickListener();
         setEqualsButtonOnClickListener();
         setChangeLayoutAndEButtonOnClickListener();
+        setParenthesisButtonsOnClickListeners();
+    }
+
+    private void setParenthesisButtonsOnClickListeners() {
+        setOpenParenthesisButtonOnClickListener();
+        setCloseParenthesisButtonOnClickListener();
+    }
+
+    private void setOpenParenthesisButtonOnClickListener() {
+        openParenthesisButton.setOnClickListener(v -> {
+            vibrate();
+            if (currentExpression.equals(INITIAL_EXPRESSION)) {
+                currentExpression = Character.toString(OPEN_PARENTHESIS);
+            } else {
+                if (numTypingMode) return;
+                currentExpression += OPEN_PARENTHESIS;
+            }
+            numTypingMode = false;
+            dotEnteredMode = false;
+            notClosedOpenParenthesisCount++;
+            updateCalculationsTextView();
+        });
+    }
+
+    private void setCloseParenthesisButtonOnClickListener() {
+        closeParenthesisButton.setOnClickListener(v -> {
+            vibrate();
+            if (!numTypingMode || notClosedOpenParenthesisCount == 0) return;
+            numTypingMode = false;
+            dotEnteredMode = false;
+            currentExpression += CLOSE_PARENTHESIS;
+            notClosedOpenParenthesisCount--;
+            updateCalculationsTextView();
+        });
     }
 
     private void setChangeLayoutAndEButtonOnClickListener() {
@@ -424,6 +458,7 @@ public class Calculator {
     }
 
     private String trimZeros(String stringResult) {
+        if (!stringResult.contains(Character.toString(DOT))) return stringResult;
         StringBuilder stringResultSB = new StringBuilder(stringResult);
         for (int i = stringResult.length() - 1; i > 0; i--) {
             char currentChar = stringResultSB.charAt(i);
