@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.math.BigDecimal;
 
@@ -99,15 +101,27 @@ public class Calculator {
 
     private static final int VIBRATION_DURATION = 20;
 
-    public Calculator(AppCompatActivity mainActivity) {
+    public static final String KEY_CURRENT_EXPRESSION = "KEY_CURRENT_EXPRESSION";
+    public static final String KEY_CALCULATIONS_HISTORY = "KEY_CALCULATIONS_HISTORY";
+
+    public String getCurrentExpression() {
+        return currentExpression;
+    }
+
+    public String getCalculationsHistory() {
+        return calculationsHistoryTextView.getText().toString();
+    }
+
+    public Calculator(AppCompatActivity mainActivity, String currentExpression, String calculationHistory) {
         this.mainActivity = mainActivity;
         initViews();
-        setOnClickListeners();
-        initCurrentExpression();
-        updateCalculationsTextView();
         initAdditionalButtonsFrameLayouts();
+        setOnClickListeners();
+        initCurrentExpression(currentExpression);
         initModesAndParams();
         initButtonsMode();
+        updateCalculationsTextView();
+        initCalculationsHistoryTextView(calculationHistory);
     }
 
     private void initViews() {
@@ -285,7 +299,7 @@ public class Calculator {
         clearButton.setOnClickListener(v -> {
             vibrate();
             calculationsHistoryTextView.setText("");
-            initCurrentExpression();
+            initCurrentExpression(null);
             updateCalculationsTextView();
             initModesAndParams();
         });
@@ -319,12 +333,16 @@ public class Calculator {
         updateCalculationsTextView();
     }
 
-    private void initCurrentExpression() {
-        currentExpression = INITIAL_EXPRESSION;
+    private void initCurrentExpression(String expression) {
+        currentExpression = expression == null ? INITIAL_EXPRESSION : expression;
     }
 
     private void updateCalculationsTextView() {
         calculationsTextView.setText(currentExpression);
+    }
+
+    private void initCalculationsHistoryTextView(String calculationsHistory) {
+        if (calculationsHistory != null) calculationsHistoryTextView.setText(calculationsHistory);
     }
 
     private void initModesAndParams() {
@@ -386,19 +404,34 @@ public class Calculator {
         BigDecimal result = null;
         try {
             result = evaluateExpression();
-        } catch (Exception e){
-
+        } catch (Exception e) {
+            String message = e.getMessage();
+            if (message == null)
+                message = mainActivity.getResources().getString(R.string.evaluate_expression_exception_snackbar_message);
+            Snackbar.make(equalsButton, message, BaseTransientBottomBar.LENGTH_LONG).show();
         }
         String stringResult = String.valueOf(result);
+        stringResult = trimZeros(stringResult);
         if (stringResult.length() > 2 &&
                 stringResult.charAt(stringResult.length() - 1) == ZERO &&
                 stringResult.charAt(stringResult.length() - 2) == DOT) {
             stringResult = stringResult.substring(0, stringResult.length() - 2);
         }
         calculationsHistoryTextView.append(currentExpression + "=" + stringResult + "\n");
-        currentExpression = stringResult;
+        currentExpression = result == null ? INITIAL_EXPRESSION : stringResult;
         updateCalculationsTextView();
         initModesAndParams();
+    }
+
+    private String trimZeros(String stringResult) {
+        StringBuilder stringResultSB = new StringBuilder(stringResult);
+        for (int i = stringResult.length() - 1; i > 0; i--) {
+            char currentChar = stringResultSB.charAt(i);
+            if (currentChar == ZERO || currentChar == DOT) {
+                stringResultSB.deleteCharAt(i);
+            } else break;
+        }
+        return stringResultSB.toString();
     }
 
     private BigDecimal evaluateExpression() {
