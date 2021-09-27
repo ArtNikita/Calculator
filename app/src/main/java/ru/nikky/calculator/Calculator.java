@@ -103,6 +103,7 @@ public class Calculator {
 
     public static final String KEY_CURRENT_EXPRESSION = "KEY_CURRENT_EXPRESSION";
     public static final String KEY_CALCULATIONS_HISTORY = "KEY_CALCULATIONS_HISTORY";
+    public static final String KEY_IS_ALL_BUTTONS_MODE = "KEY_IS_ALL_BUTTONS_MODE";
 
     public String getCurrentExpression() {
         return currentExpression;
@@ -112,14 +113,18 @@ public class Calculator {
         return calculationsHistoryTextView.getText().toString();
     }
 
-    public Calculator(AppCompatActivity mainActivity, String currentExpression, String calculationHistory) {
+    public boolean isAllButtonsMode() {
+        return allButtonsMode;
+    }
+
+    public Calculator(AppCompatActivity mainActivity, String currentExpression, String calculationHistory, boolean allButtonsMode) {
         this.mainActivity = mainActivity;
         initViews();
         initAdditionalButtonsFrameLayouts();
         setOnClickListeners();
         initCurrentExpression(currentExpression);
         initModesAndParams();
-        initButtonsMode();
+        initButtonsMode(allButtonsMode);
         updateCalculationsTextView();
         initCalculationsHistoryTextView(calculationHistory);
     }
@@ -385,9 +390,10 @@ public class Calculator {
         notClosedOpenParenthesisCount = countNotClosedOpenParenthesis();
     }
 
-    private void initButtonsMode() {
-        allButtonsMode = false;
-        hideAdditionalButtonsFrameLayouts();
+    private void initButtonsMode(boolean allButtonsMode) {
+        this.allButtonsMode = allButtonsMode;
+        if (allButtonsMode) showAdditionalButtonsFrameLayouts();
+        else hideAdditionalButtonsFrameLayouts();
     }
 
     private boolean isNumTypingMode() {

@@ -14,14 +14,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState != null &&
-                savedInstanceState.containsKey(Calculator.KEY_CURRENT_EXPRESSION)){
+        createCalculator(savedInstanceState);
+    }
+
+    private void createCalculator(Bundle savedInstanceState) {
+        if (savedInstanceState != null){
             String currentExpression = savedInstanceState.containsKey(Calculator.KEY_CURRENT_EXPRESSION) ?
                     savedInstanceState.getString(Calculator.KEY_CURRENT_EXPRESSION) : null;
             String calculationsHistory = savedInstanceState.containsKey(Calculator.KEY_CALCULATIONS_HISTORY) ?
                     savedInstanceState.getString(Calculator.KEY_CALCULATIONS_HISTORY) : null;
-            calculator = new Calculator(this, currentExpression, calculationsHistory);
-        } else calculator = new Calculator(this, null, null);
+            boolean allButtonsMode = savedInstanceState.containsKey(Calculator.KEY_IS_ALL_BUTTONS_MODE) &&
+                    savedInstanceState.getBoolean(Calculator.KEY_IS_ALL_BUTTONS_MODE);
+            calculator = new Calculator(this, currentExpression, calculationsHistory, allButtonsMode);
+        } else calculator = new Calculator(this, null, null, false);
     }
 
     @Override
@@ -29,5 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putString(Calculator.KEY_CURRENT_EXPRESSION, calculator.getCurrentExpression());
         outState.putString(Calculator.KEY_CALCULATIONS_HISTORY, calculator.getCalculationsHistory());
+        outState.putBoolean(Calculator.KEY_IS_ALL_BUTTONS_MODE, calculator.isAllButtonsMode());
     }
 }
