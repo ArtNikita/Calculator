@@ -126,8 +126,8 @@ public class EvaluateExpression {
     }
 
     private String getCurrentNumber(int currentIndex) {
-        StringBuilder currentNumberSB = new StringBuilder();
-        for (int i = currentIndex; i < currentExpression.length(); i++) {
+        StringBuilder currentNumberSB = new StringBuilder(Character.toString(currentExpression.charAt(currentIndex)));
+        for (int i = currentIndex + 1; i < currentExpression.length(); i++) {
             char currentChar = currentExpression.charAt(i);
             if (Character.isDigit(currentChar) || currentChar == DOT)
                 currentNumberSB.append(currentChar);
@@ -138,7 +138,12 @@ public class EvaluateExpression {
 
     private boolean ifCurrentTokenIsNumber(int currentIndex) {
         char currentChar = currentExpression.charAt(currentIndex);
-        return Character.isDigit(currentChar);
+        return Character.isDigit(currentChar) || currentTokenIsNegativeNumber(currentIndex);
+    }
+
+    private boolean currentTokenIsNegativeNumber(int currentIndex) {
+        return currentExpression.charAt(currentIndex) == MINUS &&
+                (currentIndex == 0 || currentExpression.charAt(currentIndex - 1) == OPEN_PARENTHESIS);
     }
 
 
