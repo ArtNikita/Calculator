@@ -361,7 +361,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/change_layout_button"
-                style="@style/CalculatorButtonStyle.MainOperations"
+                style="@style/CalculatorButtonStyle.MainOperations.LargeText"
                 android:text="@string/change_layout_button" />
         </FrameLayout>
 

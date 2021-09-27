@@ -34,6 +34,5 @@
 
     <style name="CalculatorButtonStyle.AdditionalOperations">
         <item name="android:textColor">@color/gray</item>
-        <item name="android:textSize">@dimen/additional_buttons_text_size</item>
     </style>
 </resources>
