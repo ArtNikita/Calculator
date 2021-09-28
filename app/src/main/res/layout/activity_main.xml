@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
+    style="@style/MainContainerStyle"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -28,21 +26,21 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/calculation_history_text_view"
+                    style="@style/CalculationsTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:gravity="bottom|end"
-                    android:textColor="@color/white"
                     android:textSize="@dimen/calculation_history_text_view_text_size" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/calculations_text_view"
+                    style="@style/CalculationsTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:gravity="bottom|end"
-                    android:textColor="@color/white"
                     android:textSize="@dimen/calculations_text_view_text_size" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.core.widget.NestedScrollView>
