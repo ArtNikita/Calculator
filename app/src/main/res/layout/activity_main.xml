@@ -15,6 +15,7 @@
         android:paddingBottom="@dimen/default_margin_or_padding">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/calculations_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"

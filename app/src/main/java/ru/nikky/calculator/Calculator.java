@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.widget.NestedScrollView;
 
 public class Calculator {
 
@@ -79,6 +80,7 @@ public class Calculator {
 
     private AppCompatTextView calculationsTextView;
     private AppCompatTextView calculationsHistoryTextView;
+    private NestedScrollView calculationsScrollView;
 
     private String currentExpression;
 
@@ -191,6 +193,7 @@ public class Calculator {
 
         calculationsTextView = mainActivity.findViewById(R.id.calculations_text_view);
         calculationsHistoryTextView = mainActivity.findViewById(R.id.calculation_history_text_view);
+        calculationsScrollView = mainActivity.findViewById(R.id.calculations_scroll_view);
     }
 
     private void initAdditionalButtonsFrameLayouts() {
@@ -461,6 +464,7 @@ public class Calculator {
         currentExpression = result == null ? INITIAL_EXPRESSION : stringResult;
         updateCalculationsTextView();
         initModesAndParams();
+        scrollCalculationsScrollViewDown();
     }
 
     private String trimZeros(String stringResult) {
@@ -473,6 +477,10 @@ public class Calculator {
             } else break;
         }
         return stringResultSB.toString();
+    }
+
+    private void scrollCalculationsScrollViewDown() {
+        calculationsScrollView.post(() -> calculationsScrollView.fullScroll(View.FOCUS_DOWN));
     }
 
     private BigDecimal evaluateExpression() {
