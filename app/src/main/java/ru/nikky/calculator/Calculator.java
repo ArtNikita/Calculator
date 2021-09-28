@@ -319,7 +319,6 @@ public class Calculator {
     }
 
     private void setEqualsButtonOnClickListener() {
-        addAllClosingParenthesis();
         equalsButton.setOnClickListener(v -> equalsButtonPressed());
     }
 
@@ -444,6 +443,7 @@ public class Calculator {
 
     private void equalsButtonPressed() {
         vibrate();
+        addAllClosingParenthesis();
         BigDecimal result = null;
         try {
             result = evaluateExpression();
