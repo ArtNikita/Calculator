@@ -1,6 +1,8 @@
 package ru.nikky.calculator;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -107,6 +109,11 @@ public class Calculator {
     public static final String KEY_CALCULATIONS_HISTORY = "KEY_CALCULATIONS_HISTORY";
     public static final String KEY_IS_ALL_BUTTONS_MODE = "KEY_IS_ALL_BUTTONS_MODE";
 
+    private static final String RESULT_KEY = "RESULT_KEY";
+    private static final String RESULT_EXPRESSION_KEY = "RESULT_EXPRESSION_KEY";
+
+    private boolean intentResultMode;
+
     public String getCurrentExpression() {
         return currentExpression;
     }
@@ -119,7 +126,8 @@ public class Calculator {
         return allButtonsMode;
     }
 
-    public Calculator(AppCompatActivity mainActivity, String currentExpression, String calculationHistory, boolean allButtonsMode) {
+    public Calculator(AppCompatActivity mainActivity, String currentExpression, String calculationHistory, boolean allButtonsMode, boolean setIntentResult) {
+        intentResultMode = setIntentResult;
         this.mainActivity = mainActivity;
         initViews();
         initAdditionalButtonsFrameLayouts();
@@ -465,6 +473,19 @@ public class Calculator {
         updateCalculationsTextView();
         initModesAndParams();
         scrollCalculationsScrollViewDown();
+
+        if (intentResultMode){
+            if (result == null){
+                mainActivity.setResult(Activity.RESULT_CANCELED);
+            } else {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(RESULT_KEY, stringResult);
+                String history = calculationsHistoryTextView.getText().toString();
+                resultIntent.putExtra(RESULT_EXPRESSION_KEY, history.substring(0, history.length() - 2 - stringResult.length()));
+                mainActivity.setResult(Activity.RESULT_OK, resultIntent);
+            }
+            mainActivity.finish();
+        }
     }
 
     private String trimZeros(String stringResult) {
