@@ -36,4 +36,7 @@
     <string name="pi_button">π</string>
     <string name="e_button">e</string>
     <string name="evaluate_expression_exception_snackbar_message">Check your expression</string>
+    <string name="settings_text_view">Settings</string>
+    <string name="light_theme_radio_button_text">Light theme</string>
+    <string name="dark_theme_radio_button_text">Dark theme</string>
 </resources>
