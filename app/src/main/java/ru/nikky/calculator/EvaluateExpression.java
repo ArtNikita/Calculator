@@ -1,6 +1,7 @@
 package ru.nikky.calculator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -18,6 +19,7 @@ public class EvaluateExpression {
     private static final char DIVISION = '/';
     private static final char OPEN_PARENTHESIS = '(';
     private static final char CLOSE_PARENTHESIS = ')';
+    private static final int DIVISION_SCALE = 5;
 
     public EvaluateExpression(String currentExpression) {
         this.currentExpression = currentExpression;
@@ -45,8 +47,9 @@ public class EvaluateExpression {
                 currentIndex += currentToken.length();
                 continue;
             } else {
-                if (operationsStack.empty() ||
-                        operationsStack.peek().equals(String.valueOf(OPEN_PARENTHESIS))) {
+                if ( !currentToken.equals(String.valueOf(CLOSE_PARENTHESIS)) &&
+                        (operationsStack.empty() ||
+                        operationsStack.peek().equals(String.valueOf(OPEN_PARENTHESIS)))) {
                     operationsStack.add(currentToken);
                     currentIndex += currentToken.length();
                     continue;
@@ -94,7 +97,7 @@ public class EvaluateExpression {
             case MULTIPLICATION:
                 return firstNumber.multiply(secondNumber);
             case DIVISION:
-                return firstNumber.divide(secondNumber);
+                return firstNumber.divide(secondNumber, DIVISION_SCALE, RoundingMode.CEILING);
             default:
                 return BigDecimal.valueOf(0);
         }
@@ -124,8 +127,8 @@ public class EvaluateExpression {
     }
 
     private String getCurrentNumber(int currentIndex) {
-        StringBuilder currentNumberSB = new StringBuilder();
-        for (int i = currentIndex; i < currentExpression.length(); i++) {
+        StringBuilder currentNumberSB = new StringBuilder(Character.toString(currentExpression.charAt(currentIndex)));
+        for (int i = currentIndex + 1; i < currentExpression.length(); i++) {
             char currentChar = currentExpression.charAt(i);
             if (Character.isDigit(currentChar) || currentChar == DOT)
                 currentNumberSB.append(currentChar);
@@ -136,7 +139,12 @@ public class EvaluateExpression {
 
     private boolean ifCurrentTokenIsNumber(int currentIndex) {
         char currentChar = currentExpression.charAt(currentIndex);
-        return Character.isDigit(currentChar);
+        return Character.isDigit(currentChar) || currentTokenIsNegativeNumber(currentIndex);
+    }
+
+    private boolean currentTokenIsNegativeNumber(int currentIndex) {
+        return currentExpression.charAt(currentIndex) == MINUS &&
+                (currentIndex == 0 || currentExpression.charAt(currentIndex - 1) == OPEN_PARENTHESIS);
     }
 
 
